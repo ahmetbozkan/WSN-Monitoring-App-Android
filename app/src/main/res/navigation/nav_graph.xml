@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.intalalab.wsnmonitoring.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_landingFragment"
+            app:destination="@id/wsnFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.intalalab.wsnmonitoring.ui.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_landingFragment"
+            app:destination="@id/wsnFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wsnFragment"
+        android:name="com.intalalab.wsnmonitoring.ui.wsn.WSNFragment"
+        android:label="fragment_wsn"
+        tools:layout="@layout/fragment_wsn">
+        <action
+            android:id="@+id/action_landingFragment_to_coordinatorFragment"
+            app:destination="@id/coordinatorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/coordinatorFragment"
+        android:name="com.intalalab.wsnmonitoring.ui.coordinator.CoordinatorFragment"
+        android:label="fragment_coordinator"
+        tools:layout="@layout/fragment_coordinator">
+        <argument
+            android:name="wsnId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_coordinatorFragment_to_routerFragment"
+            app:destination="@id/routerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/routerFragment"
+        android:name="com.intalalab.wsnmonitoring.ui.router.RouterFragment"
+        android:label="fragment_router"
+        tools:layout="@layout/fragment_router" >
+        <argument
+            android:name="coordinatorId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_routerFragment_to_sensorFragment"
+            app:destination="@id/sensorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sensorFragment"
+        android:name="com.intalalab.wsnmonitoring.ui.sensor.SensorFragment"
+        android:label="SensorFragment" >
+        <argument
+            android:name="routerId"
+            app:argType="long" />
+    </fragment>
+</navigation>

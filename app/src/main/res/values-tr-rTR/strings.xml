@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Hint texts -->
+    <string name="hint_username">Kullanıc Adı</string>
+    <string name="hint_password">Password</string>
+
+    <!-- Button texts -->
+    <string name="login">Giriş Yap</string>
+
+    <!-- Error texts -->
+    <string name="error_wrong_fields">Yanlış kullanıcı adı veya şifre</string>
+    <string name="error_general">Bilinmeyen bir hata oluştu</string>
+
+</resources>

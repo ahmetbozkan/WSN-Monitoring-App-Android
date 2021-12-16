@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name" translatable="false">WSN Monitoring</string>
+
+    <!-- Hint texts -->
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
+
+    <!-- Button texts -->
+    <string name="login">Login</string>
+
+    <!-- Error texts -->
+    <string name="error_wrong_fields">Wrong username or password</string>
+    <string name="error_general">Something went wrong</string>
+
+</resources>
