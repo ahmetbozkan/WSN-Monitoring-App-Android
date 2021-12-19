@@ -7,8 +7,6 @@ import com.intalalab.wsnmonitoring.core.Failure
 import com.intalalab.wsnmonitoring.util.SingleLiveEvent
 import kotlinx.coroutines.CoroutineExceptionHandler
 
-private const val TAG = "BaseViewModel"
-
 abstract class BaseViewModel : ViewModel() {
 
     private val _failure = SingleLiveEvent<Failure>()

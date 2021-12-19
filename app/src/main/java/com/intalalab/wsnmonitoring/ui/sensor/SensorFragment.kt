@@ -1,7 +1,6 @@
 package com.intalalab.wsnmonitoring.ui.sensor
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.intalalab.wsnmonitoring.R
@@ -11,25 +10,38 @@ import com.intalalab.wsnmonitoring.data.remote.model.login.LoginResponseModel
 import com.intalalab.wsnmonitoring.data.remote.model.sensor.SensorRequestBody
 import com.intalalab.wsnmonitoring.databinding.FragmentSensorBinding
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class SensorFragment: BaseFragment<FragmentSensorBinding, SensorViewModel>() {
+class SensorFragment : BaseFragment<FragmentSensorBinding, SensorViewModel>() {
 
     override val viewModel: SensorViewModel by viewModels()
 
     override fun getLayoutId(): Int = R.layout.fragment_sensor
-    
+
     private val args: SensorFragmentArgs by navArgs()
 
+    @Inject
+    lateinit var sensorAdapter: SensorAdapter
+
     override fun initialize(savedInstanceState: Bundle?) {
+
+        initRecyclerView()
 
         observeLiveData()
 
     }
 
+    private fun initRecyclerView() {
+        binding.rcvSensor.apply {
+            setHasFixedSize(true)
+            adapter = sensorAdapter
+        }
+    }
+
     private fun observeLiveData() {
         viewModel.userInfo.observe(viewLifecycleOwner, ::observeUserInfo)
-        
+
         viewModel.sensors.observe(viewLifecycleOwner, ::observeSensors)
     }
 
@@ -40,6 +52,6 @@ class SensorFragment: BaseFragment<FragmentSensorBinding, SensorViewModel>() {
     }
 
     private fun observeSensors(sensors: List<SensorEntity>) {
-        Log.d("TAG", "observeSensors: $sensors")
+        sensorAdapter.submitList(sensors)
     }
 }

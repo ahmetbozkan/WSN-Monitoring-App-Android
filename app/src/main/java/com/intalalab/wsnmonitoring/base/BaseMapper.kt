@@ -1,4 +1,4 @@
-package com.intalalab.wsnmonitoring.core
+package com.intalalab.wsnmonitoring.base
 
 interface BaseMapper<in A, out B> {
 

@@ -1,6 +1,6 @@
 package com.intalalab.wsnmonitoring.data.local.mapper
 
-import com.intalalab.wsnmonitoring.core.BaseMapper
+import com.intalalab.wsnmonitoring.base.BaseMapper
 import com.intalalab.wsnmonitoring.data.local.model.SensorEntity
 import com.intalalab.wsnmonitoring.data.local.model.SensorMeasurementTypeEntity
 import com.intalalab.wsnmonitoring.data.remote.model.sensor.SensorMeasurementTypeResponseModel
