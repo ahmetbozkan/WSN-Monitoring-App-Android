@@ -81,6 +81,10 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$library.glide"
     annotationProcessor "com.github.bumptech.glide:compiler:$library.glide"
 
+    // chucker
+    debugImplementation "com.github.chuckerteam.chucker:library:$library.chucker"
+    releaseImplementation "com.github.chuckerteam.chucker:library-no-op:$library.chucker"
+
     implementation "androidx.core:core-ktx:$library.core"
     implementation "androidx.appcompat:appcompat:$library.appcompat"
     implementation "com.google.android.material:material:$library.material"

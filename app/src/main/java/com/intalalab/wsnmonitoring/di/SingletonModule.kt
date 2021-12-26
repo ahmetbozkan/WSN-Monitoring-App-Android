@@ -2,6 +2,8 @@ package com.intalalab.wsnmonitoring.di
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.chuckerteam.chucker.api.ChuckerCollector
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.intalalab.wsnmonitoring.BuildConfig
 import com.intalalab.wsnmonitoring.data.remote.service.*
 import com.intalalab.wsnmonitoring.data.remote.util.ErrorHandlerInterceptor
@@ -43,14 +45,26 @@ object SingletonModule {
 
     @Provides
     @Singleton
+    fun provideChuckerInterceptor(@ApplicationContext context: Context): ChuckerInterceptor =
+        ChuckerInterceptor.Builder(context)
+            .collector(ChuckerCollector(context))
+            .maxContentLength(250000L)
+            .redactHeaders(emptySet())
+            .alwaysReadResponseBody(false)
+            .build()
+
+    @Provides
+    @Singleton
     fun provideOkHttp(
         cache: Cache,
         errorHandlerInterceptor: ErrorHandlerInterceptor,
-        httpLoggingInterceptor: HttpLoggingInterceptor
+        httpLoggingInterceptor: HttpLoggingInterceptor,
+        chuckerInterceptor: ChuckerInterceptor
     ): OkHttpClient = OkHttpClient.Builder()
         .cache(cache)
         .addInterceptor(errorHandlerInterceptor)
         .addInterceptor(httpLoggingInterceptor)
+        .addInterceptor(chuckerInterceptor)
         .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
         .writeTimeout(TIMEOUT, TimeUnit.SECONDS)
         .readTimeout(TIMEOUT, TimeUnit.SECONDS)
