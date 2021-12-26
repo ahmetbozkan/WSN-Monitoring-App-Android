@@ -1,7 +1,9 @@
 package com.intalalab.wsnmonitoring.ui.sensor
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.intalalab.wsnmonitoring.R
 import com.intalalab.wsnmonitoring.base.BaseFragment
@@ -36,6 +38,15 @@ class SensorFragment : BaseFragment<FragmentSensorBinding, SensorViewModel>() {
         binding.rcvSensor.apply {
             setHasFixedSize(true)
             adapter = sensorAdapter
+        }
+
+        sensorAdapter.click = object : (Long, Long) -> Unit {
+            override fun invoke(sensorId: Long, sensorMeasurementTypeId: Long) {
+                val action = SensorFragmentDirections
+                    .actionSensorFragmentToSensorDataFragment(sensorId, sensorMeasurementTypeId)
+
+                findNavController().navigate(action)
+            }
         }
     }
 

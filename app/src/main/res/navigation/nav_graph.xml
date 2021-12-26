@@ -65,5 +65,20 @@
         <argument
             android:name="routerId"
             app:argType="long" />
+        <action
+            android:id="@+id/action_sensorFragment_to_sensorDataFragment"
+            app:destination="@id/sensorDataFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sensorDataFragment"
+        android:name="com.intalalab.wsnmonitoring.ui.sensor.data.SensorDataFragment"
+        android:label="fragment_sensor_data"
+        tools:layout="@layout/fragment_sensor_data" >
+        <argument
+            android:name="sensorId"
+            app:argType="long" />
+        <argument
+            android:name="sensorMeasurementTypeId"
+            app:argType="long" />
     </fragment>
 </navigation>

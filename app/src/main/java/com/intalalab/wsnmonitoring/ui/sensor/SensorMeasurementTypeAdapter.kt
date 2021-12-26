@@ -24,7 +24,7 @@ class SensorMeasurementTypeAdapter @Inject constructor() :
         }
     }
 
-    var click: ((wsnId: Long) -> Unit)? = null
+    var click: ((sensorMeasurementTypeId: Long) -> Unit)? = null
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

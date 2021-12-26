@@ -25,7 +25,7 @@ class SensorAdapter @Inject constructor() :
         }
     }
 
-    var click: ((wsnId: Long) -> Unit)? = null
+    var click: ((sensorId: Long, sensorMeasurementTypeId: Long) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SensorViewHolder =
         SensorViewHolder(
@@ -40,32 +40,43 @@ class SensorAdapter @Inject constructor() :
     override fun onBindViewHolder(holder: SensorViewHolder, position: Int) {
         val item = getItem(position)
 
-        val measurementTypeAdapter = SensorMeasurementTypeAdapter()
-
         if (item != null) {
             holder.bind(item)
 
-            holder.itemView.setOnClickListener {
-                click?.invoke(item.id)
-            }
+            val measurementTypeAdapter = SensorMeasurementTypeAdapter()
 
-            holder.binding.apply {
-                imgExpandMeasurementTypes.setOnClickListener {
-                    if (rcvSensorMeasurementTypes.visibility == View.GONE)
-                        rcvSensorMeasurementTypes.showView()
-                    else
-                        rcvSensorMeasurementTypes.goneView()
+            initSensorMeasurementTypeRecyclerView(holder, item, measurementTypeAdapter)
+
+            measurementTypeAdapter.click = object : (Long) -> Unit {
+                override fun invoke(measurementTypeId: Long) {
+                    click?.invoke(item.id, measurementTypeId)
                 }
 
-                rcvSensorMeasurementTypes.apply {
-                    setHasFixedSize(true)
-                    adapter = measurementTypeAdapter
-                }
             }
-
-            if (!item.measurementTypes.isNullOrEmpty())
-                measurementTypeAdapter.submitList(item.measurementTypes)
         }
+    }
+
+    private fun initSensorMeasurementTypeRecyclerView(
+        holder: SensorViewHolder,
+        item: SensorEntity,
+        measurementTypeAdapter: SensorMeasurementTypeAdapter
+    ) {
+        holder.binding.apply {
+            imgExpandMeasurementTypes.setOnClickListener {
+                if (rcvSensorMeasurementTypes.visibility == View.GONE)
+                    rcvSensorMeasurementTypes.showView()
+                else
+                    rcvSensorMeasurementTypes.goneView()
+            }
+
+            rcvSensorMeasurementTypes.apply {
+                setHasFixedSize(true)
+                adapter = measurementTypeAdapter
+            }
+        }
+
+        if (!item.measurementTypes.isNullOrEmpty())
+            measurementTypeAdapter.submitList(item.measurementTypes)
     }
 
     companion object {
