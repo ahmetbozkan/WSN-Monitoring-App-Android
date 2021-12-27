@@ -23,6 +23,7 @@ android {
         buildConfigField("String", "BASE_URL_COORDINATOR", base_url_coordinator)
         buildConfigField("String", "BASE_URL_ROUTER", base_url_router)
         buildConfigField("String", "BASE_URL_SENSOR", base_url_sensor)
+        buildConfigField("String", "BASE_URL_SENSOR_DATA", base_url_sensor_data)
     }
 
     buildTypes {

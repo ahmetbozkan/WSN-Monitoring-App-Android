@@ -8,6 +8,8 @@ import com.intalalab.wsnmonitoring.data.remote.repository.router.RouterRepositor
 import com.intalalab.wsnmonitoring.data.remote.repository.router.RouterRepositoryImpl
 import com.intalalab.wsnmonitoring.data.remote.repository.sensor.SensorRepository
 import com.intalalab.wsnmonitoring.data.remote.repository.sensor.SensorRepositoryImpl
+import com.intalalab.wsnmonitoring.data.remote.repository.sensor.data.SensorDataRepository
+import com.intalalab.wsnmonitoring.data.remote.repository.sensor.data.SensorDataRepositoryImpl
 import com.intalalab.wsnmonitoring.data.remote.repository.wsn.WSNRepository
 import com.intalalab.wsnmonitoring.data.remote.repository.wsn.WSNRepositoryImpl
 import dagger.Binds
@@ -39,5 +41,9 @@ abstract class RepositoryModule {
     @Binds
     @ViewModelScoped
     abstract fun bindSensorRepository(sensorRepositoryImpl: SensorRepositoryImpl): SensorRepository
+
+    @Binds
+    @ViewModelScoped
+    abstract fun bindSensorMeasurementRepository(sensorMeasurementRepositoryImpl: SensorDataRepositoryImpl): SensorDataRepository
 
 }

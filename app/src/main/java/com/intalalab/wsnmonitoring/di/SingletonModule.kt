@@ -132,6 +132,17 @@ object SingletonModule {
             .build()
             .create(SensorApi::class.java)
 
+    @Provides
+    @Singleton
+    fun provideSensorMeasurementApi(client: Lazy<OkHttpClient>): SensorDataApi =
+        Retrofit.Builder()
+            .baseUrl(BuildConfig.BASE_URL_SENSOR_DATA)
+            .callFactory { client.get().newCall(it) }
+            .addConverterFactory(NullResponseConverter())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(SensorDataApi::class.java)
+
     @Singleton
     @Provides
     fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences =

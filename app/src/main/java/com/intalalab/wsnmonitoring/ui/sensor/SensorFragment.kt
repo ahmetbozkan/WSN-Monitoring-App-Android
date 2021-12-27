@@ -43,7 +43,11 @@ class SensorFragment : BaseFragment<FragmentSensorBinding, SensorViewModel>() {
         sensorAdapter.click = object : (Long, Long) -> Unit {
             override fun invoke(sensorId: Long, sensorMeasurementTypeId: Long) {
                 val action = SensorFragmentDirections
-                    .actionSensorFragmentToSensorDataFragment(sensorId, sensorMeasurementTypeId)
+                    .actionSensorFragmentToSensorDataFragment(
+                        args.routerId,
+                        sensorId,
+                        sensorMeasurementTypeId
+                    )
 
                 findNavController().navigate(action)
             }
