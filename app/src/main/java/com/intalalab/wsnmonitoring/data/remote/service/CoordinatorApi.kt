@@ -8,7 +8,7 @@ import retrofit2.http.POST
 
 interface CoordinatorApi {
 
-    @POST("getcoordinatorsbywsn")
+    @POST("getcoordinatorswithdetails")
     suspend fun getCoordinatorsByWsn(
         @Body coordinatorRequestBody: CoordinatorRequestBody
     ): Response<List<CoordinatorResponseModel>>

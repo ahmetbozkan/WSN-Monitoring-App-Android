@@ -8,7 +8,7 @@ import retrofit2.http.POST
 
 interface RouterApi {
 
-    @POST("getrouterbycoordinator")
+    @POST("getrouterswithdetails")
     suspend fun getRoutersByCoordinator(
         @Body routerRequestBody: RouterRequestBody
     ): Response<List<RouterResponseModel>>

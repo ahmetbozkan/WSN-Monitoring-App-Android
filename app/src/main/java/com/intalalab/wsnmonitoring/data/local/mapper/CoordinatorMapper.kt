@@ -20,10 +20,14 @@ class CoordinatorMapper @Inject constructor() :
                     name = it.name.emptyIfNull(),
                     description = it.description.emptyIfNull(),
                     city = it.city.zeroIfNull(),
+                    cityName = it.cityName.emptyIfNull(),
                     country = it.country.zeroIfNull(),
+                    countryName = it.countryName.emptyIfNull(),
                     county = it.county.zeroIfNull(),
+                    countyName = it.countyName.emptyIfNull(),
                     createdBy = it.createdBy.emptyIfNull(),
                     district = it.district.zeroIfNull(),
+                    districtName = it.districtName.emptyIfNull(),
                     latitude = it.latitude.zeroIfNull(),
                     longitude = it.longitude.zeroIfNull()
                 )

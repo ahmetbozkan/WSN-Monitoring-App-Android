@@ -10,7 +10,7 @@ import com.intalalab.wsnmonitoring.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginFragment: BaseFragment<FragmentLoginBinding, LoginViewModel>() {
+class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
 
     override val viewModel: LoginViewModel by viewModels()
 
@@ -29,6 +29,12 @@ class LoginFragment: BaseFragment<FragmentLoginBinding, LoginViewModel>() {
                 LoginRequestBody(getUsernameText(), getPasswordText())
             )
         }
+
+        binding.btnRegister.setOnClickListener {
+            val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
+
+            findNavController().navigate(action)
+        }
     }
 
     private fun observeLiveData() {
@@ -36,7 +42,7 @@ class LoginFragment: BaseFragment<FragmentLoginBinding, LoginViewModel>() {
     }
 
     private fun observeLoginResponse(login: Boolean) {
-        if(login){
+        if (login) {
             val action = LoginFragmentDirections.actionLoginFragmentToLandingFragment()
             findNavController().navigate(action)
         }
