@@ -1,6 +1,7 @@
 package com.intalalab.wsnmonitoring
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -21,6 +22,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initNavigation()
+
+        Log.d("TAG", "onCreate: test brandch tdeneme")
+        Log.d("TAG", "onCreate: test brandch tdeneme")
+        Log.d("TAG", "onCreate: test brandch tdeneme")
+        Log.d("TAG", "onCreate: test brandch tdeneme")
+        Log.d("TAG", "onCreate: test brandch tdeneme")
+        Log.d("TAG", "onCreate: test brandch tdeneme")
+        Log.d("TAG", "onCreate: test brandch tdeneme")
+        Log.d("TAG", "onCreate: test brandch tdeneme")
+        Log.d("TAG", "onCreate: test brandch tdeneme")
 
     }
 
