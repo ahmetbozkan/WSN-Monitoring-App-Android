@@ -16,15 +16,16 @@ import javax.inject.Inject
 class RouterAdapter @Inject constructor() :
     ListAdapter<RouterEntity, RouterAdapter.RouterViewHolder>(diffUtil) {
 
-    inner class RouterViewHolder(private val binding: RowRouterItemBinding) :
+    inner class RouterViewHolder(val binding: RowRouterItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(model: RouterEntity) {
             binding.model = model
+            binding.index = adapterPosition
         }
     }
 
-    var click: ((wsnId: Long) -> Unit)? = null
+    var click: ((wsnId: Long, router: RouterEntity, item: String) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RouterViewHolder =
         RouterViewHolder(
@@ -43,7 +44,11 @@ class RouterAdapter @Inject constructor() :
             holder.bind(item)
 
             holder.itemView.setOnClickListener {
-                click?.invoke(item.id)
+                click?.invoke(item.id, item, "item")
+            }
+
+            holder.binding.imgLocation.setOnClickListener {
+                click?.invoke(item.id, item, "location")
             }
         }
     }

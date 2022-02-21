@@ -3,6 +3,8 @@ package com.intalalab.wsnmonitoring.ui.wsn
 import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import cn.pedant.SweetAlert.SweetAlertDialog
 import com.intalalab.wsnmonitoring.R
 import com.intalalab.wsnmonitoring.base.BaseFragment
 import com.intalalab.wsnmonitoring.data.local.model.WSNEntity
@@ -26,10 +28,21 @@ class WSNFragment : BaseFragment<FragmentWsnBinding, WSNViewModel>() {
 
         observeLiveData()
 
+        manageToolbarClick()
+
+    }
+
+    private fun observeLiveData() {
+        viewModel.wsnList.observe(viewLifecycleOwner, ::observeWSNData)
+    }
+
+    private fun observeWSNData(wsnData: List<WSNEntity>) {
+        wsnAdapter.submitList(wsnData)
     }
 
     private fun initRecyclerView() {
         binding.rcvWsn.apply {
+            layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = wsnAdapter
             setHasFixedSize(true)
         }
@@ -45,11 +58,32 @@ class WSNFragment : BaseFragment<FragmentWsnBinding, WSNViewModel>() {
         }
     }
 
-    private fun observeLiveData() {
-        viewModel.wsnList.observe(viewLifecycleOwner, ::observeWSNData)
+    private fun manageToolbarClick() {
+        binding.imgLogout.setOnClickListener {
+            SweetAlertDialog(requireContext(), SweetAlertDialog.WARNING_TYPE).apply {
+                titleText = "Log out"
+                contentText = "Are you sure want to exit?"
+                confirmText = "Yes"
+
+                setConfirmClickListener {
+                    dismiss()
+                    logout()
+                }
+                cancelText = "Cancel"
+                setCancelClickListener {
+                    dismiss()
+                }
+                show()
+            }
+        }
     }
 
-    private fun observeWSNData(wsnData: List<WSNEntity>) {
-        wsnAdapter.submitList(wsnData)
+    private fun logout() {
+        viewModel.onLogoutClick()
+
+        findNavController().popBackStack()
+        findNavController().navigate(
+            WSNFragmentDirections.actionGlobalWelcomeFragment()
+        )
     }
 }

@@ -1,6 +1,5 @@
 package com.intalalab.wsnmonitoring.data.local.model
 
-import com.google.gson.annotations.SerializedName
 import com.intalalab.wsnmonitoring.util.extension.EMPTY
 
 data class SensorDataEntity(

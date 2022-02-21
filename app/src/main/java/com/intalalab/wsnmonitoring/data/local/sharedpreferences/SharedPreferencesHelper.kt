@@ -15,4 +15,9 @@ interface SharedPreferencesHelper {
      */
     suspend fun storeUserInfo(userInfo: LoginResponseModel)
 
+    /**
+     * remove all the info in user key (logout)
+     */
+    suspend fun resetUserInfo()
+
 }

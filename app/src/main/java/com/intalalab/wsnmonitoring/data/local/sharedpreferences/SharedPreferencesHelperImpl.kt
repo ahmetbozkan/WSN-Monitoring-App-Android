@@ -32,5 +32,11 @@ class SharedPreferencesHelperImpl @Inject constructor(
         }.apply()
     }
 
+    override suspend fun resetUserInfo() {
+        sharedPreferences.edit().apply {
+            putString(KEY_USER_ID, String.EMPTY)
+        }.apply()
+    }
+
 
 }

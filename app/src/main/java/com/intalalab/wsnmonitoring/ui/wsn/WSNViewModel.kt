@@ -9,6 +9,7 @@ import com.intalalab.wsnmonitoring.data.local.model.WSNEntity
 import com.intalalab.wsnmonitoring.data.remote.model.login.LoginResponseModel
 import com.intalalab.wsnmonitoring.domain.usecase.GetUserInfoUseCase
 import com.intalalab.wsnmonitoring.domain.usecase.GetWSNUseCase
+import com.intalalab.wsnmonitoring.domain.usecase.ResetUserInfoUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -17,7 +18,8 @@ import javax.inject.Inject
 @HiltViewModel
 class WSNViewModel @Inject constructor(
     private val getWSNUseCase: GetWSNUseCase,
-    private val getUserInfoUseCase: GetUserInfoUseCase
+    private val getUserInfoUseCase: GetUserInfoUseCase,
+    private val resetUserInfoUseCase: ResetUserInfoUseCase
 ) : BaseViewModel() {
 
     private val _wsnList = MutableLiveData<List<WSNEntity>>()
@@ -47,5 +49,9 @@ class WSNViewModel @Inject constructor(
 
             disableLoading()
         }
+
+    fun onLogoutClick() = viewModelScope.launch(Dispatchers.IO + genericExceptionHandler) {
+        resetUserInfoUseCase.invoke()
+    }
 
 }

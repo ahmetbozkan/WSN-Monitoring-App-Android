@@ -19,6 +19,7 @@ class WSNAdapter @Inject constructor() :
 
         fun bind(model: WSNEntity) {
             binding.model = model
+            binding.index = adapterPosition
         }
     }
 

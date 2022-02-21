@@ -38,7 +38,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>() {
             val action = if (loggedIn)
                 SplashFragmentDirections.actionSplashFragmentToLandingFragment()
             else
-                SplashFragmentDirections.actionSplashFragmentToLoginFragment()
+                SplashFragmentDirections.actionSplashFragmentToWelcomeFragment()
 
             val navOptions = NavOptions.Builder().setPopUpTo(R.id.splashFragment, true).build()
 

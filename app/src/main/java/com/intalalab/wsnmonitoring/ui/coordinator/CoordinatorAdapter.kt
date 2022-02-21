@@ -19,6 +19,7 @@ class CoordinatorAdapter @Inject constructor() :
 
         fun bind(model: CoordinatorEntity) {
             binding.model = model
+            binding.index = adapterPosition
         }
     }
 

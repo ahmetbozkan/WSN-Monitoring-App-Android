@@ -9,6 +9,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
 import com.intalalab.wsnmonitoring.R
 import com.intalalab.wsnmonitoring.core.Failure
 import com.intalalab.wsnmonitoring.util.extension.makeToast
@@ -24,6 +26,8 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : BaseViewModel> : Fragment
     abstract fun getLayoutId(): Int
 
     abstract fun initialize(savedInstanceState: Bundle?)
+
+    private val navOptions = NavOptions.Builder().setLaunchSingleTop(true).build()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,6 +64,14 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : BaseViewModel> : Fragment
                     requireContext().makeToast(getString(R.string.error_general))
                 }
             }
+        }
+    }
+
+    protected fun navigateToFragment(destination: Int, bundle: Bundle? = null) {
+
+        //avoid to reselect
+        if (findNavController().currentDestination?.id != destination) {
+            findNavController().navigate(destination, bundle, navOptions)
         }
     }
 

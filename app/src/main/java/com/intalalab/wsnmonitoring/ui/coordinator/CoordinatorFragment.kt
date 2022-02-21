@@ -6,6 +6,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.intalalab.wsnmonitoring.R
 import com.intalalab.wsnmonitoring.base.BaseFragment
+import com.intalalab.wsnmonitoring.cv.ClickManage
 import com.intalalab.wsnmonitoring.data.local.model.CoordinatorEntity
 import com.intalalab.wsnmonitoring.data.remote.model.coordinator.CoordinatorRequestBody
 import com.intalalab.wsnmonitoring.data.remote.model.login.LoginResponseModel
@@ -31,6 +32,8 @@ class CoordinatorFragment : BaseFragment<FragmentCoordinatorBinding, Coordinator
 
         observeLiveData()
 
+        manageToolbarClick()
+
     }
 
     private fun initRecyclerView() {
@@ -45,6 +48,19 @@ class CoordinatorFragment : BaseFragment<FragmentCoordinatorBinding, Coordinator
                     .actionCoordinatorFragmentToRouterFragment(coordinatorId)
 
                 findNavController().navigate(action)
+            }
+
+        }
+    }
+
+    private fun manageToolbarClick() {
+        binding.toolbar.clickManage = object : ClickManage {
+            override fun backButtonClicked() {
+                findNavController().navigateUp()
+            }
+
+            override fun searchDoneClicked(text: String) {
+
             }
 
         }

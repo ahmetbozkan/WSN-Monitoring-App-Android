@@ -1,12 +1,12 @@
 package com.intalalab.wsnmonitoring.ui.sensor
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.intalalab.wsnmonitoring.R
 import com.intalalab.wsnmonitoring.base.BaseFragment
+import com.intalalab.wsnmonitoring.cv.ClickManage
 import com.intalalab.wsnmonitoring.data.local.model.SensorEntity
 import com.intalalab.wsnmonitoring.data.remote.model.login.LoginResponseModel
 import com.intalalab.wsnmonitoring.data.remote.model.sensor.SensorRequestBody
@@ -32,6 +32,9 @@ class SensorFragment : BaseFragment<FragmentSensorBinding, SensorViewModel>() {
 
         observeLiveData()
 
+        setFields()
+
+        manageToolbarClick()
     }
 
     private fun initRecyclerView() {
@@ -52,6 +55,25 @@ class SensorFragment : BaseFragment<FragmentSensorBinding, SensorViewModel>() {
                 findNavController().navigate(action)
             }
         }
+    }
+
+    private fun manageToolbarClick() {
+        binding.toolbar.clickManage = object : ClickManage {
+            override fun backButtonClicked() {
+                findNavController().navigateUp()
+            }
+
+            override fun searchDoneClicked(text: String) {
+
+            }
+
+        }
+    }
+
+    private fun setFields() {
+        binding.tvRouterName.text = "Router Name: ${args.router.name}"
+        binding.tvRouterDesc.text = "Router Description: ${args.router.description}"
+        binding.tvRouterLocation.text = "${args.router.cityName}, ${args.router.countryName}"
     }
 
     private fun observeLiveData() {

@@ -29,12 +29,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
                 LoginRequestBody(getUsernameText(), getPasswordText())
             )
         }
-
-        binding.btnRegister.setOnClickListener {
-            val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
-
-            findNavController().navigate(action)
-        }
     }
 
     private fun observeLiveData() {

@@ -12,9 +12,6 @@
         <action
             android:id="@+id/action_loginFragment_to_landingFragment"
             app:destination="@id/wsnFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_registerFragment"
-            app:destination="@id/registerFragment" />
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
@@ -25,8 +22,8 @@
             android:id="@+id/action_splashFragment_to_landingFragment"
             app:destination="@id/wsnFragment" />
         <action
-            android:id="@+id/action_splashFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/action_splashFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/wsnFragment"
@@ -71,6 +68,9 @@
         <action
             android:id="@+id/action_sensorFragment_to_sensorDataFragment"
             app:destination="@id/sensorDataFragment" />
+        <argument
+            android:name="router"
+            app:argType="com.intalalab.wsnmonitoring.data.local.model.RouterEntity" />
     </fragment>
     <fragment
         android:id="@+id/sensorDataFragment"
@@ -88,8 +88,50 @@
             app:argType="long" />
     </fragment>
     <fragment
-        android:id="@+id/registerFragment"
-        android:name="com.intalalab.wsnmonitoring.ui.register.RegisterFragment"
+        android:id="@+id/registerStepFirstFragment"
+        android:name="com.intalalab.wsnmonitoring.ui.register.RegisterStepFirstFragment"
         android:label="fragment_register"
-        tools:layout="@layout/fragment_register" />
+        tools:layout="@layout/fragment_register_step_first" >
+        <action
+            android:id="@+id/action_registerStepFirstFragment_to_registerStepSecondFragment"
+            app:destination="@id/registerStepSecondFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.intalalab.wsnmonitoring.ui.welcome.WelcomeFragment"
+        android:label="fragment_welcome"
+        tools:layout="@layout/fragment_welcome" >
+        <action
+            android:id="@+id/action_welcomeFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_registerStepFirstFragment"
+            app:destination="@id/registerStepFirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerStepSecondFragment"
+        android:name="com.intalalab.wsnmonitoring.ui.register.RegisterStepSecondFragment"
+        android:label="fragment_register_step_second"
+        tools:layout="@layout/fragment_register_step_second" >
+        <action
+            android:id="@+id/action_registerStepSecondFragment_to_registerStepThirdFragment"
+            app:destination="@id/registerStepThirdFragment" />
+        <argument
+            android:name="registerRequestBody"
+            app:argType="com.intalalab.wsnmonitoring.data.remote.model.login.RegisterRequestBody" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerStepThirdFragment"
+        android:name="com.intalalab.wsnmonitoring.ui.register.RegisterStepThirdFragment"
+        android:label="fragment_register_step_third"
+        tools:layout="@layout/fragment_register_step_third" >
+        <action
+            android:id="@+id/action_registerStepThirdFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="registerRequestBody"
+            app:argType="com.intalalab.wsnmonitoring.data.remote.model.login.RegisterRequestBody" />
+    </fragment><action android:id="@+id/action_global_welcomeFragment" app:destination="@id/welcomeFragment"/>
 </navigation>

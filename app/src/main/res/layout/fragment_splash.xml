@@ -13,8 +13,25 @@
 
     <com.intalalab.wsnmonitoring.cv.CustomConstraintLayout
         android:layout_width="match_parent"
-        app:isVisible="@{viewModel.isLoading()}"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/ic_background_wallpaper"
+        app:isVisible="@{false}">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_wallpaper_filter" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:layout_marginEnd="80dp"
+            android:src="@drawable/ic_intalalab_logo_with_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </com.intalalab.wsnmonitoring.cv.CustomConstraintLayout>
 </layout>

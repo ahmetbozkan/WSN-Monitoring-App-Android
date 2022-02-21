@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs.kotlin'
     id 'dagger.hilt.android.plugin'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -49,7 +50,9 @@ android {
     buildFeatures {
         dataBinding true
     }
+
 }
+
 
 dependencies {
     // navigation component
@@ -85,6 +88,10 @@ dependencies {
     // chucker
     debugImplementation "com.github.chuckerteam.chucker:library:$library.chucker"
     releaseImplementation "com.github.chuckerteam.chucker:library-no-op:$library.chucker"
+
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    implementation 'cn.pedant.sweetalert:library:1.3'
 
     implementation "androidx.core:core-ktx:$library.core"
     implementation "androidx.appcompat:appcompat:$library.appcompat"

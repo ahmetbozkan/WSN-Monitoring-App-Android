@@ -2,6 +2,7 @@
 <resources>
 
     <!-- Hint texts -->
+    <string name="hint_email">E-Posta</string>
     <string name="hint_username">Kullanıcı Adı</string>
     <string name="hint_password">Şifre</string>
     <string name="hint_confirm_password">Şifreyi onayla</string>

@@ -3,24 +3,38 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/drawable/background_button.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/drawable/background_wallpaper_filter.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/drawable/bg_edittext.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/drawable/ic_wifi.xml" value="0.3728205128205128" />
         <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/custom_constraint_layout_loading.xml" value="0.25" />
         <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/custom_layout_constraint_loading.xml" value="0.1" />
-        <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/fragment_coordinator.xml" value="0.24615384615384617" />
+        <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/fragment_coordinator.xml" value="0.33" />
         <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/fragment_landing.xml" value="0.3625" />
-        <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/fragment_login.xml" value="0.264" />
+        <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/fragment_login.xml" value="0.33" />
         <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/fragment_register.xml" value="0.3625" />
+        <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/fragment_register_step_first.xml" value="0.3625" />
+        <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/fragment_register_step_second.xml" value="0.3625" />
+        <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/fragment_register_step_third.xml" value="0.3625" />
         <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/fragment_router.xml" value="0.3625" />
-        <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/fragment_sensor.xml" value="0.23148148148148148" />
+        <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/fragment_sensor.xml" value="0.33" />
         <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/fragment_sensor_data.xml" value="0.3625" />
         <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/fragment_splash.xml" value="0.25" />
+        <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/fragment_welcome.xml" value="0.3625" />
+        <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/fragment_wsn.xml" value="0.33" />
+        <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/layout_toolbar_with_search.xml" value="0.3625" />
+        <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/layout_welcome_logo_description.xml" value="0.3625" />
         <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/row_coordinator_item.xml" value="0.3625" />
         <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/row_router_item.xml" value="0.3625" />
+        <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/row_sensor_data_item.xml" value="0.3625" />
         <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/row_sensor_item.xml" value="0.3625" />
         <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/row_sensor_measurement_type_item.xml" value="0.3625" />
         <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/row_ws_item.xml" value="0.3569230769230769" />
         <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/row_wsn_item.xml" value="0.35" />
+        <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.221875" />
+        <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/mipmap-anydpi-v26/ic_launcher_intalalab.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.221875" />
       </map>
     </option>
   </component>
