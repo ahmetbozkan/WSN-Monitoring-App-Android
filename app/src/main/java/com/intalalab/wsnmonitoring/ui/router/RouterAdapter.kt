@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.intalalab.wsnmonitoring.R
 import com.intalalab.wsnmonitoring.data.local.model.RouterEntity
 import com.intalalab.wsnmonitoring.databinding.RowRouterItemBinding
+import com.intalalab.wsnmonitoring.util.AdapterSelectionType
 import javax.inject.Inject
 
 class RouterAdapter @Inject constructor() :
@@ -23,7 +24,7 @@ class RouterAdapter @Inject constructor() :
         }
     }
 
-    var click: ((wsnId: Long, router: RouterEntity, item: String) -> Unit)? = null
+    var click: ((entity: RouterEntity, selectionType: AdapterSelectionType) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RouterViewHolder =
         RouterViewHolder(
@@ -42,11 +43,11 @@ class RouterAdapter @Inject constructor() :
             holder.bind(item)
 
             holder.itemView.setOnClickListener {
-                click?.invoke(item.id, item, "item")
+                click?.invoke(item, AdapterSelectionType.NAVIGATE_FORWARD)
             }
 
-            holder.binding.imgLocation.setOnClickListener {
-                click?.invoke(item.id, item, "location")
+            holder.binding.tvDetail.setOnClickListener {
+                click?.invoke(item, AdapterSelectionType.DETAIL)
             }
         }
     }

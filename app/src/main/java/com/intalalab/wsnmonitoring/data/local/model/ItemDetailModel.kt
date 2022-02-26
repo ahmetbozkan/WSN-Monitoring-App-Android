@@ -28,6 +28,18 @@ data class ItemDetailModel(
                 coordinator.latitude,
                 coordinator.longitude
             )
+
+        fun parseRouterEntity(router: RouterEntity) =
+            ItemDetailModel(
+                router.name,
+                router.description,
+                router.cityName,
+                router.countryName,
+                router.countyName,
+                router.districtName,
+                router.latitude,
+                router.longitude
+            )
     }
 
 }

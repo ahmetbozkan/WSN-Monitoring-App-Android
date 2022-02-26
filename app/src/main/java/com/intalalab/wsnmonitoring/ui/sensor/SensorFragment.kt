@@ -47,7 +47,7 @@ class SensorFragment : BaseFragment<FragmentSensorBinding, SensorViewModel>() {
             override fun invoke(sensorId: Long, sensorMeasurementTypeId: Long) {
                 val action = SensorFragmentDirections
                     .actionSensorFragmentToSensorDataFragment(
-                        args.routerId,
+                        args.router.id,
                         sensorId,
                         sensorMeasurementTypeId
                     )
@@ -83,7 +83,7 @@ class SensorFragment : BaseFragment<FragmentSensorBinding, SensorViewModel>() {
 
     private fun observeUserInfo(userResponseModel: LoginResponseModel) {
         viewModel.getSensors(
-            SensorRequestBody(routerId = args.routerId, userResponseModel)
+            SensorRequestBody(routerId = args.router.id, userResponseModel)
         )
     }
 

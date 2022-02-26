@@ -24,7 +24,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#d2e4cc"
+            android:background="#fefbe9"
             android:gravity="center"
             android:minHeight="4dp"
             android:orientation="vertical"

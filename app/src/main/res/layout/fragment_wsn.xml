@@ -20,7 +20,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#9cb7d4"
+            android:background="#e1eedd"
             android:orientation="horizontal"
             app:layout_constraintTop_toTopOf="parent">
 

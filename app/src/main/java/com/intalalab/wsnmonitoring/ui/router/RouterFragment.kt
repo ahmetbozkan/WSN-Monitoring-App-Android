@@ -1,21 +1,19 @@
 package com.intalalab.wsnmonitoring.ui.router
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
 import com.intalalab.wsnmonitoring.R
 import com.intalalab.wsnmonitoring.base.BaseFragment
 import com.intalalab.wsnmonitoring.cv.ClickManager
+import com.intalalab.wsnmonitoring.data.local.model.ItemDetailModel
 import com.intalalab.wsnmonitoring.data.local.model.RouterEntity
 import com.intalalab.wsnmonitoring.data.remote.model.login.LoginResponseModel
 import com.intalalab.wsnmonitoring.data.remote.model.router.RouterRequestBody
 import com.intalalab.wsnmonitoring.databinding.FragmentRouterBinding
-import com.intalalab.wsnmonitoring.util.Constants
+import com.intalalab.wsnmonitoring.util.AdapterSelectionType
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -32,6 +30,8 @@ class RouterFragment : BaseFragment<FragmentRouterBinding, RouterViewModel>() {
 
     override fun initialize(savedInstanceState: Bundle?) {
 
+        getArgs()
+
         initRecyclerView()
 
         observeLiveData()
@@ -40,37 +40,50 @@ class RouterFragment : BaseFragment<FragmentRouterBinding, RouterViewModel>() {
 
     }
 
+    private fun getArgs() {
+        val item = args.coordinator
+
+        binding.coordinatorModel = item
+    }
+
     private fun initRecyclerView() {
         binding.rcvRouter.apply {
+            layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = routerAdapter
             setHasFixedSize(true)
         }
 
-        routerAdapter.click = object : (Long, RouterEntity, String) -> Unit {
-            override fun invoke(routerId: Long, router: RouterEntity, item: String) {
-                if (item == "item") {
-                    val action = RouterFragmentDirections
-                        .actionRouterFragmentToSensorFragment(routerId, router)
-                    findNavController().navigate(action)
-                } else {
-                    val uri = String.format(
-                        Locale.ENGLISH,
-                        Constants.GOOGLE_MAP_ACTION_FORMAT,
-                        router.latitude,
-                        router.longitude
-                    )
-                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(uri)))
+        routerAdapter.click = object : (RouterEntity, AdapterSelectionType) -> Unit {
+            override fun invoke(router: RouterEntity, selectionType: AdapterSelectionType) {
+                when (selectionType) {
+                    AdapterSelectionType.DETAIL -> {
+                        navigateToDetailFragment(router)
+                    }
+                    AdapterSelectionType.NAVIGATE_FORWARD -> {
+                        navigateToSensorFragment(router)
+                    }
                 }
-
             }
+
 
         }
     }
 
+    private fun navigateToDetailFragment(router: RouterEntity) {
+        val action = RouterFragmentDirections.actionGlobalItemDetailDialogFragment(
+            ItemDetailModel.parseRouterEntity(router)
+        )
+
+        navigate(action)
+    }
+
+    private fun navigateToSensorFragment(router: RouterEntity) {
+        val action = RouterFragmentDirections.actionRouterFragmentToSensorFragment(router)
+        navigate(action)
+    }
 
     private fun observeLiveData() {
         viewModel.userInfo.observe(viewLifecycleOwner, ::observeUserInfo)
-
         viewModel.routers.observe(viewLifecycleOwner, ::observeRouters)
     }
 
