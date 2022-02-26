@@ -7,9 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.intalalab.wsnmonitoring.R
-import com.intalalab.wsnmonitoring.data.local.model.CoordinatorEntity
 import com.intalalab.wsnmonitoring.data.local.model.RouterEntity
-import com.intalalab.wsnmonitoring.databinding.RowCoordinatorItemBinding
 import com.intalalab.wsnmonitoring.databinding.RowRouterItemBinding
 import javax.inject.Inject
 

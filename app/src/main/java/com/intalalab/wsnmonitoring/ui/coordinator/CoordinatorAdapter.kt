@@ -9,21 +9,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.intalalab.wsnmonitoring.R
 import com.intalalab.wsnmonitoring.data.local.model.CoordinatorEntity
 import com.intalalab.wsnmonitoring.databinding.RowCoordinatorItemBinding
+import com.intalalab.wsnmonitoring.util.AdapterSelectionType
 import javax.inject.Inject
 
 class CoordinatorAdapter @Inject constructor() :
     ListAdapter<CoordinatorEntity, CoordinatorAdapter.CoordinatorViewHolder>(diffUtil) {
 
-    inner class CoordinatorViewHolder(private val binding: RowCoordinatorItemBinding) :
+    inner class CoordinatorViewHolder(val binding: RowCoordinatorItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(model: CoordinatorEntity) {
             binding.model = model
-            binding.index = adapterPosition
         }
     }
 
-    var click: ((wsnId: Long) -> Unit)? = null
+    var click: ((entity: CoordinatorEntity, selectionType: AdapterSelectionType) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoordinatorViewHolder =
         CoordinatorViewHolder(
@@ -42,7 +42,11 @@ class CoordinatorAdapter @Inject constructor() :
             holder.bind(item)
 
             holder.itemView.setOnClickListener {
-                click?.invoke(item.id)
+                click?.invoke(item, AdapterSelectionType.NAVIGATE_FORWARD)
+            }
+
+            holder.binding.tvDetail.setOnClickListener {
+                click?.invoke(item, AdapterSelectionType.DETAIL)
             }
         }
     }

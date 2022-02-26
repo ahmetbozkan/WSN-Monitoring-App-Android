@@ -47,10 +47,10 @@ class WSNFragment : BaseFragment<FragmentWsnBinding, WSNViewModel>() {
             setHasFixedSize(true)
         }
 
-        wsnAdapter.click = object : ((Long) -> Unit) {
-            override fun invoke(wsnId: Long) {
+        wsnAdapter.click = object : ((WSNEntity) -> Unit) {
+            override fun invoke(model: WSNEntity) {
                 val action = WSNFragmentDirections
-                    .actionLandingFragmentToCoordinatorFragment(wsnId)
+                    .actionLandingFragmentToCoordinatorFragment(model)
 
                 findNavController().navigate(action)
             }

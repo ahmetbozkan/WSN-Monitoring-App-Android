@@ -1,5 +1,8 @@
 package com.intalalab.wsnmonitoring.base
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,8 +10,7 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.databinding.library.baseAdapters.BR
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.DialogFragment
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
 import androidx.navigation.NavOptions
@@ -20,10 +22,10 @@ import com.intalalab.wsnmonitoring.core.Failure
 import com.intalalab.wsnmonitoring.util.extension.hideKeyboard
 import com.intalalab.wsnmonitoring.util.extension.makeToast
 
-abstract class BaseFragment<DB : ViewDataBinding, VM : BaseViewModel> : Fragment() {
+abstract class BaseDialogFragment<DB : ViewDataBinding, VM : BaseViewModel> : DialogFragment() {
 
     private var _binding: DB? = null
-    protected val binding: DB get() = _binding!!
+    val binding: DB get() = _binding!!
 
     protected abstract val viewModel: VM
 
@@ -36,6 +38,21 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : BaseViewModel> : Fragment
 
     protected lateinit var navController: NavController
 
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = super.onCreateDialog(savedInstanceState)
+
+        dialog.setCancelable(false)
+        dialog.setCanceledOnTouchOutside(false)
+
+        return dialog
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        setStyle(STYLE_NO_TITLE, android.R.style.Theme_Material_Dialog_NoActionBar_MinWidth)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -44,13 +61,15 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : BaseViewModel> : Fragment
         _binding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
         binding.lifecycleOwner = this
 
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        putDataBinding()
+        putViewModel()
 
         initNavigation()
 
@@ -59,8 +78,8 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : BaseViewModel> : Fragment
         initialize(savedInstanceState)
     }
 
-    private fun putDataBinding() {
-        binding.setVariable(BR.viewModel, viewModel)
+    private fun putViewModel() {
+        //binding.setVariable(BR.viewModel, viewModel)
     }
 
     private fun initNavigation() {
@@ -68,15 +87,29 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : BaseViewModel> : Fragment
     }
 
     private fun observeLiveData() {
-        viewModel.failure.observe(viewLifecycleOwner) { error ->
-            when (error) {
-                is Failure.EmptyResponse -> {
-                    requireContext().makeToast(getString(R.string.error_wrong_fields))
-                }
-                else -> {
-                    requireContext().makeToast(getString(R.string.error_general))
-                }
+        viewModel.failure.observe(viewLifecycleOwner) { failure ->
+            failure?.let { error ->
+                handleFailure(error)
             }
+        }
+    }
+
+    private fun handleFailure(error: Failure) {
+        when (error) {
+            is Failure.EmptyResponse -> {
+                requireContext().makeToast(getString(R.string.error_wrong_fields))
+            }
+            else -> {
+                requireContext().makeToast(getString(R.string.error_general))
+            }
+        }
+    }
+
+
+    protected fun navigateWithId(destination: Int, bundle: Bundle? = null) {
+        if (findNavController().currentDestination?.id != destination) {
+            popBackStack()
+            findNavController().navigate(destination, bundle, navOptions)
         }
     }
 
@@ -89,13 +122,6 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : BaseViewModel> : Fragment
 
         if (currentDestination == this.javaClass.name)
             navController.navigate(directions)
-    }
-
-    protected fun navigateToFragment(destination: Int, bundle: Bundle? = null) {
-        //avoid to reselect
-        if (navController.currentDestination?.id != destination) {
-            navController.navigate(destination, bundle, navOptions)
-        }
     }
 
     protected fun popBackStack() {
@@ -115,5 +141,4 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : BaseViewModel> : Fragment
         _binding = null
         hideKeyboard()
     }
-
 }

@@ -1,7 +1,10 @@
 package com.intalalab.wsnmonitoring.data.local.model
 
+import android.os.Parcelable
 import com.intalalab.wsnmonitoring.util.extension.EMPTY
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class CoordinatorEntity(
     val id: Long = 0,
     val name: String = String.EMPTY,
@@ -17,4 +20,4 @@ data class CoordinatorEntity(
     val districtName: String = String.EMPTY,
     val latitude: Double = 0.0,
     val longitude: Double = 0.0
-)
+): Parcelable

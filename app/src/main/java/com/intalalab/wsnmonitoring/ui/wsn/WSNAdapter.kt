@@ -23,7 +23,7 @@ class WSNAdapter @Inject constructor() :
         }
     }
 
-    var click: ((wsnId: Long) -> Unit)? = null
+    var click: ((wsnId: WSNEntity) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WSNViewHolder =
         WSNViewHolder(
@@ -42,7 +42,7 @@ class WSNAdapter @Inject constructor() :
             holder.bind(item)
 
             holder.itemView.setOnClickListener {
-                click?.invoke(item.id)
+                click?.invoke(item)
             }
         }
     }

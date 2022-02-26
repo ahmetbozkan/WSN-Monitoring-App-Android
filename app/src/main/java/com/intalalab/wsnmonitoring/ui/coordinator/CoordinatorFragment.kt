@@ -2,15 +2,18 @@ package com.intalalab.wsnmonitoring.ui.coordinator
 
 import android.os.Bundle
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
 import com.intalalab.wsnmonitoring.R
 import com.intalalab.wsnmonitoring.base.BaseFragment
-import com.intalalab.wsnmonitoring.cv.ClickManage
+import com.intalalab.wsnmonitoring.cv.ClickManager
 import com.intalalab.wsnmonitoring.data.local.model.CoordinatorEntity
+import com.intalalab.wsnmonitoring.data.local.model.ItemDetailModel
+import com.intalalab.wsnmonitoring.data.local.model.WSNEntity
 import com.intalalab.wsnmonitoring.data.remote.model.coordinator.CoordinatorRequestBody
 import com.intalalab.wsnmonitoring.data.remote.model.login.LoginResponseModel
 import com.intalalab.wsnmonitoring.databinding.FragmentCoordinatorBinding
+import com.intalalab.wsnmonitoring.util.AdapterSelectionType
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -28,6 +31,8 @@ class CoordinatorFragment : BaseFragment<FragmentCoordinatorBinding, Coordinator
 
     override fun initialize(savedInstanceState: Bundle?) {
 
+        getArgs()
+
         initRecyclerView()
 
         observeLiveData()
@@ -36,33 +41,61 @@ class CoordinatorFragment : BaseFragment<FragmentCoordinatorBinding, Coordinator
 
     }
 
+    private fun getArgs() {
+        val wsn = args.wsnModel
+
+        setFields(wsn)
+    }
+
+    private fun setFields(wsn: WSNEntity) {
+        binding.wsnModel = wsn
+    }
+
     private fun initRecyclerView() {
         binding.rcvCoordinator.apply {
+            layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = coordinatorAdapter
             setHasFixedSize(true)
         }
 
-        coordinatorAdapter.click = object : (Long) -> Unit {
-            override fun invoke(coordinatorId: Long) {
-                val action = CoordinatorFragmentDirections
-                    .actionCoordinatorFragmentToRouterFragment(coordinatorId)
-
-                findNavController().navigate(action)
+        coordinatorAdapter.click = object : (CoordinatorEntity, AdapterSelectionType) -> Unit {
+            override fun invoke(entity: CoordinatorEntity, selectionType: AdapterSelectionType) {
+                when (selectionType) {
+                    AdapterSelectionType.DETAIL -> {
+                        navigateToDetailPage(entity)
+                    }
+                    AdapterSelectionType.NAVIGATE_FORWARD -> {
+                        navigateToRouterFragment(entity)
+                    }
+                }
             }
 
         }
     }
 
+    private fun navigateToDetailPage(coordinator: CoordinatorEntity) {
+        val action = CoordinatorFragmentDirections.actionGlobalItemDetailDialogFragment(
+            ItemDetailModel.parseCoordinatorEntity(coordinator)
+        )
+
+        navigate(action)
+    }
+
+    private fun navigateToRouterFragment(coordinator: CoordinatorEntity) {
+        val action = CoordinatorFragmentDirections
+            .actionCoordinatorFragmentToRouterFragment(coordinator)
+
+        navigate(action)
+    }
+
     private fun manageToolbarClick() {
-        binding.toolbar.clickManage = object : ClickManage {
-            override fun backButtonClicked() {
-                findNavController().navigateUp()
+        binding.toolbar.clickManager = object : ClickManager {
+            override fun onBackClicked() {
+                navigateUp()
             }
 
-            override fun searchDoneClicked(text: String) {
-
+            override fun onSearchDone(text: String) {
             }
-
         }
     }
 
@@ -75,7 +108,7 @@ class CoordinatorFragment : BaseFragment<FragmentCoordinatorBinding, Coordinator
     private fun observeUserInfo(userInfo: LoginResponseModel?) {
         if (userInfo != null)
             viewModel.getCoordinators(
-                CoordinatorRequestBody(id = args.wsnId, userInfo = userInfo)
+                CoordinatorRequestBody(id = args.wsnModel.id, userInfo = userInfo)
             )
     }
 

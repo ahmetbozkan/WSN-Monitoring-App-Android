@@ -24,7 +24,7 @@ class CustomToolBarWithSearch(context: Context, attrs: AttributeSet?) :
     private var title: String = ""
     private var isSearchGone: Boolean = false
 
-    var clickManage: ClickManage? = null
+    var clickManager: ClickManager? = null
 
     init {
         inflate(context, R.layout.layout_toolbar_with_search, this)
@@ -37,9 +37,8 @@ class CustomToolBarWithSearch(context: Context, attrs: AttributeSet?) :
         val typedArray =
             context.obtainStyledAttributes(attrs, R.styleable.CustomToolBarWithSearch)
 
-        title =
-            typedArray.getString(R.styleable.CustomToolBarWithSearch_toolbarTitle)
-                ?: throw NullPointerException("must to enter title")
+        title = typedArray.getString(R.styleable.CustomToolBarWithSearch_toolbarTitle)
+            ?: throw NullPointerException("must enter title")
 
         isSearchGone =
             typedArray.getBoolean(R.styleable.CustomToolBarWithSearch_isSearchGone, false)
@@ -70,7 +69,7 @@ class CustomToolBarWithSearch(context: Context, attrs: AttributeSet?) :
             if (actionId == EditorInfo.IME_ACTION_DONE) {
 
                 edtSearch.hideKeyboard()
-                clickManage?.searchDoneClicked(getSearchText())
+                clickManager?.onSearchDone(getSearchText())
 
                 true
             } else false
@@ -83,7 +82,7 @@ class CustomToolBarWithSearch(context: Context, attrs: AttributeSet?) :
             if (isSearchBoxShown())
                 hideSearchEditText()
             else
-                clickManage?.backButtonClicked()
+                clickManager?.onBackClicked()
         }
 
         icSearch.setOnClickListener {
@@ -110,14 +109,14 @@ class CustomToolBarWithSearch(context: Context, attrs: AttributeSet?) :
 /**
  * manage click on view
  */
-interface ClickManage {
+interface ClickManager {
     /**
      * back button clicked
      */
-    fun backButtonClicked()
+    fun onBackClicked()
 
     /**
      * done button clicked on keyboard for search edittext
      */
-    fun searchDoneClicked(text: String)
+    fun onSearchDone(text: String)
 }

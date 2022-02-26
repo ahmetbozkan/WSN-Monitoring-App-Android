@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.detail.ItemDetailDialogFragment">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.intalalab.wsnmonitoring.data.local.model.ItemDetailModel" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_close"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/img_close"
+                android:text="@{model.name}"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Coordinator Name" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_country_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:text="Country"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toStartOf="@id/tv_country"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_name" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_country"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{model.country}"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_country_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_country_title"
+                tools:text="Turkey" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_city_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:text="City"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toStartOf="@id/tv_city"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_country_title" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{model.city}"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_city_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_city_title"
+                tools:text="Ordu" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_county_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:text="County"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toStartOf="@id/tv_county"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_city_title" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_county"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{model.county}"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_county_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_county_title"
+                tools:text="Ulubey" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_district_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:text="District"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toStartOf="@id/tv_district"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_county_title" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_district"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{model.district}"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_district_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_district_title"
+                tools:text="Yenisayaca" />
+
+            <LinearLayout
+                android:id="@+id/linear_layout_location_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/tv_district_title">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_location_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:drawableStart="@drawable/ic_location"
+                    android:drawableTint="@color/black"
+                    android:gravity="center_vertical"
+                    android:text="Location"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@id/tv_district"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_county_title" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="See in the Map"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_district_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_district_title" />
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_description_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Description"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linear_layout_location_container" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:text="@{model.description}"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_description_title"
+                tools:text="This coordinator has three routers. You can add your
+description in there. Good area for giving information." />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_created_by"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:text="Created By: X"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_description" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

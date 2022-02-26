@@ -2,11 +2,10 @@ package com.intalalab.wsnmonitoring.ui.sensor.data
 
 import android.os.Bundle
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.intalalab.wsnmonitoring.R
 import com.intalalab.wsnmonitoring.base.BaseFragment
-import com.intalalab.wsnmonitoring.cv.ClickManage
+import com.intalalab.wsnmonitoring.cv.ClickManager
 import com.intalalab.wsnmonitoring.data.local.model.SensorDataEntity
 import com.intalalab.wsnmonitoring.data.remote.model.login.LoginResponseModel
 import com.intalalab.wsnmonitoring.data.remote.model.sensor.data.SensorDataRequestBody
@@ -60,20 +59,21 @@ class SensorDataFragment : BaseFragment<FragmentSensorDataBinding, SensorDataVie
         )
     }
 
+    private fun observeSensorData(list: List<SensorDataEntity>) {
+        sensorDataAdapter.submitList(list)
+    }
+
     private fun manageToolbarClick() {
-        binding.toolbar.clickManage = object : ClickManage {
-            override fun backButtonClicked() {
-                findNavController().navigateUp()
+        binding.toolbar.clickManager = object : ClickManager {
+            override fun onBackClicked() {
+                navigateUp()
             }
 
-            override fun searchDoneClicked(text: String) {
-
+            override fun onSearchDone(text: String) {
+                TODO("Not yet implemented")
             }
 
         }
     }
 
-    private fun observeSensorData(list: List<SensorDataEntity>) {
-        sensorDataAdapter.submitList(list)
-    }
 }

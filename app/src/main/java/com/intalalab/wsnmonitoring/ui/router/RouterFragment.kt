@@ -8,11 +8,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.intalalab.wsnmonitoring.R
 import com.intalalab.wsnmonitoring.base.BaseFragment
-import com.intalalab.wsnmonitoring.cv.ClickManage
+import com.intalalab.wsnmonitoring.cv.ClickManager
 import com.intalalab.wsnmonitoring.data.local.model.RouterEntity
 import com.intalalab.wsnmonitoring.data.remote.model.login.LoginResponseModel
 import com.intalalab.wsnmonitoring.data.remote.model.router.RouterRequestBody
 import com.intalalab.wsnmonitoring.databinding.FragmentRouterBinding
+import com.intalalab.wsnmonitoring.util.Constants
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import javax.inject.Inject
@@ -54,7 +55,7 @@ class RouterFragment : BaseFragment<FragmentRouterBinding, RouterViewModel>() {
                 } else {
                     val uri = String.format(
                         Locale.ENGLISH,
-                        "geo:%f,%f",
+                        Constants.GOOGLE_MAP_ACTION_FORMAT,
                         router.latitude,
                         router.longitude
                     )
@@ -66,18 +67,6 @@ class RouterFragment : BaseFragment<FragmentRouterBinding, RouterViewModel>() {
         }
     }
 
-    private fun manageToolbarClick() {
-        binding.toolbar.clickManage = object : ClickManage {
-            override fun backButtonClicked() {
-                findNavController().navigateUp()
-            }
-
-            override fun searchDoneClicked(text: String) {
-
-            }
-
-        }
-    }
 
     private fun observeLiveData() {
         viewModel.userInfo.observe(viewLifecycleOwner, ::observeUserInfo)
@@ -88,11 +77,24 @@ class RouterFragment : BaseFragment<FragmentRouterBinding, RouterViewModel>() {
     private fun observeUserInfo(userInfo: LoginResponseModel?) {
         if (userInfo != null)
             viewModel.getRouters(
-                RouterRequestBody(id = args.coordinatorId, userInfo = userInfo)
+                RouterRequestBody(id = args.coordinator.id, userInfo = userInfo)
             )
     }
 
     private fun observeRouters(routers: List<RouterEntity>) {
         routerAdapter.submitList(routers)
     }
+
+    private fun manageToolbarClick() {
+        binding.toolbar.clickManager = object : ClickManager {
+            override fun onBackClicked() {
+                navigateUp()
+            }
+
+            override fun onSearchDone(text: String) {
+
+            }
+        }
+    }
+
 }
