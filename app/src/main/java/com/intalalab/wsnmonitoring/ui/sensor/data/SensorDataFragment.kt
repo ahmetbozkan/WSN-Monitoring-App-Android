@@ -10,6 +10,7 @@ import com.intalalab.wsnmonitoring.data.local.model.SensorDataEntity
 import com.intalalab.wsnmonitoring.data.remote.model.login.LoginResponseModel
 import com.intalalab.wsnmonitoring.data.remote.model.sensor.data.SensorDataRequestBody
 import com.intalalab.wsnmonitoring.databinding.FragmentSensorDataBinding
+import com.intalalab.wsnmonitoring.util.extension.setProgress
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -27,12 +28,22 @@ class SensorDataFragment : BaseFragment<FragmentSensorDataBinding, SensorDataVie
 
     override fun initialize(savedInstanceState: Bundle?) {
 
+        getArgs()
+
         initRecyclerView()
 
         observeLiveData()
 
         manageToolbarClick()
 
+        setCustomProgress()
+
+    }
+
+    private fun getArgs() {
+        val sensor = args.sensor
+
+        binding.sensorEntity = sensor
     }
 
     private fun initRecyclerView() {
@@ -74,6 +85,10 @@ class SensorDataFragment : BaseFragment<FragmentSensorDataBinding, SensorDataVie
             }
 
         }
+    }
+
+    private fun setCustomProgress() {
+        setProgress(requireView(), R.id.progress_bar)
     }
 
 }

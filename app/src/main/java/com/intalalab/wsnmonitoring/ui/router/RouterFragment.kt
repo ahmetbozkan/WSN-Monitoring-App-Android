@@ -13,6 +13,7 @@ import com.intalalab.wsnmonitoring.data.remote.model.login.LoginResponseModel
 import com.intalalab.wsnmonitoring.data.remote.model.router.RouterRequestBody
 import com.intalalab.wsnmonitoring.databinding.FragmentRouterBinding
 import com.intalalab.wsnmonitoring.util.AdapterSelectionType
+import com.intalalab.wsnmonitoring.util.extension.setProgress
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -37,6 +38,8 @@ class RouterFragment : BaseFragment<FragmentRouterBinding, RouterViewModel>() {
         observeLiveData()
 
         manageToolbarClick()
+
+        setCustomProgress()
 
     }
 
@@ -108,6 +111,10 @@ class RouterFragment : BaseFragment<FragmentRouterBinding, RouterViewModel>() {
 
             }
         }
+    }
+
+    private fun setCustomProgress() {
+        setProgress(requireView(), R.id.progress_bar)
     }
 
 }

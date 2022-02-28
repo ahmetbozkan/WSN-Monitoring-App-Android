@@ -7,6 +7,10 @@
     <data>
 
         <variable
+            name="routerEntity"
+            type="com.intalalab.wsnmonitoring.data.local.model.RouterEntity" />
+
+        <variable
             name="viewModel"
             type="com.intalalab.wsnmonitoring.ui.sensor.SensorViewModel" />
     </data>
@@ -24,75 +28,45 @@
             app:layout_constraintTop_toTopOf="parent"
             app:toolbarTitle="SENSORS" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/layout_router_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="#d2e4cc"
-            app:layout_constraintTop_toBottomOf="@id/toolbar">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_router_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:paddingStart="0dp"
-                android:paddingEnd="8dp"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Router 1" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_router_desc"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:paddingStart="0dp"
-                android:paddingEnd="8dp"
-                android:singleLine="true"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/tv_router_name"
-                app:layout_constraintTop_toBottomOf="@id/tv_router_name"
-                tools:text="This is a Router item" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_router_location"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:paddingStart="0dp"
-                android:paddingEnd="8dp"
-                android:singleLine="true"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_router_desc"
-                tools:text="kartal" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            android:background="@color/dark_blue"
+            android:fontFamily="@font/basic"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="@{routerEntity.name}"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            tools:text="ROUTER 1" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_sensor"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:background="#D4E2E6"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_router_info"
             tools:listitem="@layout/row_sensor_item" />
+
+        <FrameLayout
+            android:id="@+id/view_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#57000000"
+            app:isVisible="@{viewModel.isLoading()}">
+
+            <com.github.ybq.android.spinkit.SpinKitView
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:SpinKit_Color="@color/dark_blue" />
+
+        </FrameLayout>
 
     </com.intalalab.wsnmonitoring.cv.CustomConstraintLayout>
 </layout>

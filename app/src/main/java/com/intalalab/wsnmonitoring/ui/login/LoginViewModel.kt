@@ -8,6 +8,7 @@ import com.intalalab.wsnmonitoring.core.Status
 import com.intalalab.wsnmonitoring.data.remote.model.login.LoginRequestBody
 import com.intalalab.wsnmonitoring.data.remote.model.login.LoginResponseModel
 import com.intalalab.wsnmonitoring.domain.usecase.LoginUseCase
+import com.intalalab.wsnmonitoring.domain.usecase.StoreIsRememberMeChecked
 import com.intalalab.wsnmonitoring.domain.usecase.StoreUserInfoUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -17,13 +18,14 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase,
-    private val storeUserInfoUseCase: StoreUserInfoUseCase
+    private val storeUserInfoUseCase: StoreUserInfoUseCase,
+    private val storeIsRememberMeChecked: StoreIsRememberMeChecked
 ) : BaseViewModel() {
 
     private val _login = MutableLiveData<Boolean>()
     val login: LiveData<Boolean> get() = _login
 
-    fun login(loginRequestBody: LoginRequestBody) =
+    fun login(loginRequestBody: LoginRequestBody, isRememberMeChecked: Boolean) =
         viewModelScope.launch(Dispatchers.IO + genericExceptionHandler) {
             enableLoading()
 
@@ -32,6 +34,9 @@ class LoginViewModel @Inject constructor(
             when (response.status) {
                 Status.SUCCESS -> {
                     storeUserId(response.data!!)
+
+                    if(isRememberMeChecked)
+                        storeIsRememberMeChecked.invoke(isRememberMeChecked)
 
                     _login.postValue(true)
                 }

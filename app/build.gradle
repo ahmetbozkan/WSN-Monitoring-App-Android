@@ -93,6 +93,8 @@ dependencies {
 
     implementation 'cn.pedant.sweetalert:library:1.3'
 
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+
     implementation "androidx.core:core-ktx:$library.core"
     implementation "androidx.appcompat:appcompat:$library.appcompat"
     implementation "com.google.android.material:material:$library.material"

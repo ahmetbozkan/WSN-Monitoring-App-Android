@@ -14,6 +14,7 @@ import com.intalalab.wsnmonitoring.data.remote.model.coordinator.CoordinatorRequ
 import com.intalalab.wsnmonitoring.data.remote.model.login.LoginResponseModel
 import com.intalalab.wsnmonitoring.databinding.FragmentCoordinatorBinding
 import com.intalalab.wsnmonitoring.util.AdapterSelectionType
+import com.intalalab.wsnmonitoring.util.extension.setProgress
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -38,6 +39,8 @@ class CoordinatorFragment : BaseFragment<FragmentCoordinatorBinding, Coordinator
         observeLiveData()
 
         manageToolbarClick()
+
+        setCustomProgress()
 
     }
 
@@ -114,5 +117,9 @@ class CoordinatorFragment : BaseFragment<FragmentCoordinatorBinding, Coordinator
 
     private fun observeCoordinators(list: List<CoordinatorEntity>) {
         coordinatorAdapter.submitList(list)
+    }
+
+    private fun setCustomProgress() {
+        setProgress(requireView(), R.id.progress_bar)
     }
 }

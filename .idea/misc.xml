@@ -6,11 +6,14 @@
         <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/drawable/background_button.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/drawable/background_wallpaper_filter.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/drawable/bg_edittext.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/drawable/ic_arrow_right.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/drawable/ic_wifi.xml" value="0.3728205128205128" />
         <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/custom_constraint_layout_loading.xml" value="0.25" />
         <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/custom_layout_constraint_loading.xml" value="0.1" />
         <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/dialog_fragment_item_detail.xml" value="0.3625" />
+        <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/dialog_fragment_multi_selection.xml" value="0.33" />
+        <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/dialog_fragment_sensor_detail.xml" value="0.3625" />
         <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/fragment_coordinator.xml" value="0.33" />
         <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/fragment_landing.xml" value="0.3625" />
         <entry key="..\:/Users/ahmet/AndroidStudioProjects/WSNMonitoring/app/src/main/res/layout/fragment_login.xml" value="0.33" />

@@ -28,37 +28,50 @@
             app:layout_constraintTop_toTopOf="parent"
             app:toolbarTitle="COORDINATORS" />
 
-        <com.google.android.material.card.MaterialCardView
+
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/card_view_wsn_info_container"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar">
+            android:background="@color/dark_blue"
+            android:fontFamily="@font/basic"
+            android:gravity="center"
+            android:padding="8dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:text="@{wsnModel.name}"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            tools:text="WSN 1" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#9cb7d4"
-                android:padding="8dp"
-                android:paddingStart="24dp"
-                android:paddingEnd="24dp"
-                android:text="@{wsnModel.name}"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                tools:text="WSN 1" />
-
-        </com.google.android.material.card.MaterialCardView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_coordinator"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="8dp"
+            android:background="#D4E2E6"
+            android:paddingTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/card_view_wsn_info_container"
             tools:listitem="@layout/row_coordinator_item" />
+
+        <FrameLayout
+            android:id="@+id/view_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#57000000"
+            app:isVisible="@{viewModel.isLoading()}">
+
+            <com.github.ybq.android.spinkit.SpinKitView
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:SpinKit_Color="@color/dark_blue" />
+
+        </FrameLayout>
 
     </com.intalalab.wsnmonitoring.cv.CustomConstraintLayout>
 </layout>

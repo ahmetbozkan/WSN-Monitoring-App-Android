@@ -13,11 +13,12 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:cardCornerRadius="8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+            android:background="#D4E2E6"
             android:layout_height="match_parent"
             android:padding="16dp">
 
@@ -26,19 +27,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_close"
+                app:layout_constraintBottom_toBottomOf="@id/tv_name"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@id/tv_name" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/img_close"
+                android:fontFamily="@font/basic"
                 android:text="@{model.name}"
+                android:textAllCaps="true"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/img_close"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="Coordinator Name" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -47,20 +52,23 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
+                android:fontFamily="@font/basic"
                 android:text="Country"
                 android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@id/tv_country"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_name" />
+                app:layout_constraintTop_toBottomOf="@id/tv_description" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_country"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/basic"
                 android:text="@{model.country}"
                 android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_country_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tv_country_title"
@@ -72,9 +80,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
+                android:fontFamily="@font/basic"
                 android:text="City"
                 android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@id/tv_city"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_country_title" />
@@ -83,9 +93,10 @@
                 android:id="@+id/tv_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/basic"
                 android:text="@{model.city}"
                 android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_city_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tv_city_title"
@@ -97,9 +108,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
+                android:fontFamily="@font/basic"
                 android:text="County"
                 android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@id/tv_county"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_city_title" />
@@ -108,9 +121,10 @@
                 android:id="@+id/tv_county"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/basic"
                 android:text="@{model.county}"
                 android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_county_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tv_county_title"
@@ -122,9 +136,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
+                android:fontFamily="@font/basic"
                 android:text="District"
                 android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@id/tv_district"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_county_title" />
@@ -133,70 +149,77 @@
                 android:id="@+id/tv_district"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/basic"
                 android:text="@{model.district}"
                 android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_district_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tv_district_title"
                 tools:text="Yenisayaca" />
 
-            <LinearLayout
+
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/linear_layout_location_container"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
+                app:cardCornerRadius="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_district_title">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_location_title"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_weight="1"
-                    android:drawableStart="@drawable/ic_location"
-                    android:drawableTint="@color/black"
-                    android:gravity="center_vertical"
-                    android:text="Location"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    app:layout_constraintEnd_toStartOf="@id/tv_district"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_county_title" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_location"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="See in the Map"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_district_title"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tv_district_title" />
+                    android:background="@color/light_blue"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
 
-            </LinearLayout>
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/ic_location"
+                        app:tint="@color/red_btn_bg_color" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_location_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/basic"
+                        android:text="See in the Map"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toStartOf="@id/tv_district"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_county_title" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_description_title"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
+                android:fontFamily="@font/basic"
                 android:text="Description"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="17sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/linear_layout_location_container" />
+                app:layout_constraintStart_toStartOf="@+id/tv_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_description"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:gravity="center"
+                android:fontFamily="@font/basic"
+                android:gravity="start"
                 android:text="@{model.description}"
                 android:textColor="@color/black"
                 android:textSize="14sp"
@@ -205,21 +228,6 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_description_title"
                 tools:text="This coordinator has three routers. You can add your
 description in there. Good area for giving information." />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_created_by"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="16dp"
-                android:gravity="center"
-                android:text="Created By: X"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_description" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

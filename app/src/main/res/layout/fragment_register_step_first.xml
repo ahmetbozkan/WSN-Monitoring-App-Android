@@ -36,7 +36,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:backgroundTint="#d3e4cd"
+            android:backgroundTint="@color/light_blue_outer"
             app:cardCornerRadius="4dp"
             app:layout_constraintEnd_toEndOf="@id/guideline2"
             app:layout_constraintStart_toStartOf="@id/guideline"
@@ -54,9 +54,11 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="40dp"
-                    android:text="Create Account"
-                    android:textColor="@color/black"
-                    android:textSize="26sp" />
+                    android:fontFamily="@font/basic"
+                    android:text="CREATE ACCOUNT"
+                    android:textColor="@color/white"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -68,7 +70,7 @@
                         android:layout_width="0dp"
                         android:layout_height="4dp"
                         android:layout_weight="1"
-                        android:background="#86bb95" />
+                        android:background="@color/dark_blue" />
 
                     <View
                         android:layout_width="0dp"
@@ -90,8 +92,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:fontFamily="@font/basic"
                     android:text="Username"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edt_username"
@@ -99,17 +103,21 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:background="@drawable/bg_edittext"
+                    android:fontFamily="@font/basic"
                     android:hint="Username.."
                     android:padding="12dp"
-                    android:textColorHint="@color/black"
+                    android:textColor="@color/black"
+                    android:textColorHint="#787575"
                     android:textSize="14sp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:fontFamily="@font/basic"
                     android:text="E-mail"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edt_email"
@@ -117,9 +125,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:background="@drawable/bg_edittext"
+                    android:fontFamily="@font/basic"
                     android:hint="E-mail address.."
                     android:padding="12dp"
-                    android:textColorHint="@color/black"
+                    android:textColor="@color/black"
+                    android:textColorHint="#787575"
                     android:textSize="14sp" />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -129,8 +139,12 @@
                     android:layout_marginTop="24dp"
                     android:layout_marginBottom="40dp"
                     android:background="@drawable/background_button"
+                    android:fontFamily="@font/basic"
                     android:minWidth="120dp"
-                    android:text="Continue" />
+                    android:text="Continue"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 

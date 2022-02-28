@@ -7,6 +7,7 @@ import com.intalalab.wsnmonitoring.R
 import com.intalalab.wsnmonitoring.base.BaseFragment
 import com.intalalab.wsnmonitoring.data.remote.model.login.LoginRequestBody
 import com.intalalab.wsnmonitoring.databinding.FragmentLoginBinding
+import com.intalalab.wsnmonitoring.util.extension.setProgress
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,12 +22,16 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
         manageClick()
 
         observeLiveData()
+
+        setCustomProgress()
+
     }
 
     private fun manageClick() {
         binding.btnLogin.setOnClickListener {
             viewModel.login(
-                LoginRequestBody(getUsernameText(), getPasswordText())
+                LoginRequestBody(getUsernameText(), getPasswordText()),
+                binding.checkboxRememberMe.isChecked
             )
         }
     }
@@ -47,4 +52,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
 
     private fun getPasswordText() =
         binding.edtPassword.text.toString()
+
+    private fun setCustomProgress() {
+        setProgress(requireView(), R.id.progress_bar)
+    }
 }

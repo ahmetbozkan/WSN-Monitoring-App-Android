@@ -13,6 +13,7 @@ class SharedPreferencesHelperImpl @Inject constructor(
 
     companion object {
         private const val KEY_USER_ID = "user_id"
+        private const val KEY_IS_REMEMBER_ME_CHECKED = "is_remember_me_checked"
     }
 
     override fun getUserInfo(): LoginResponseModel? {
@@ -35,6 +36,16 @@ class SharedPreferencesHelperImpl @Inject constructor(
     override suspend fun resetUserInfo() {
         sharedPreferences.edit().apply {
             putString(KEY_USER_ID, String.EMPTY)
+        }.apply()
+    }
+
+    override fun getIsRememberMeChecked(): Boolean =
+        sharedPreferences.getBoolean(KEY_IS_REMEMBER_ME_CHECKED, false)
+
+
+    override suspend fun storeIsRememberMeChecked(checked: Boolean) {
+        sharedPreferences.edit().apply {
+            putBoolean(KEY_IS_REMEMBER_ME_CHECKED, checked)
         }.apply()
     }
 

@@ -20,4 +20,14 @@ interface SharedPreferencesHelper {
      */
     suspend fun resetUserInfo()
 
+    /**
+     * get is remember me checked
+     */
+    fun getIsRememberMeChecked(): Boolean
+
+    /**
+     * store is remember me selected
+     */
+    suspend fun storeIsRememberMeChecked(checked: Boolean)
+
 }

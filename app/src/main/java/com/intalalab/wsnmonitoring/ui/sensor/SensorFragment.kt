@@ -2,8 +2,8 @@ package com.intalalab.wsnmonitoring.ui.sensor
 
 import android.os.Bundle
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
 import com.intalalab.wsnmonitoring.R
 import com.intalalab.wsnmonitoring.base.BaseFragment
 import com.intalalab.wsnmonitoring.cv.ClickManager
@@ -11,6 +11,8 @@ import com.intalalab.wsnmonitoring.data.local.model.SensorEntity
 import com.intalalab.wsnmonitoring.data.remote.model.login.LoginResponseModel
 import com.intalalab.wsnmonitoring.data.remote.model.sensor.SensorRequestBody
 import com.intalalab.wsnmonitoring.databinding.FragmentSensorBinding
+import com.intalalab.wsnmonitoring.util.AdapterSelectionType
+import com.intalalab.wsnmonitoring.util.extension.setProgress
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -35,26 +37,33 @@ class SensorFragment : BaseFragment<FragmentSensorBinding, SensorViewModel>() {
         setFields()
 
         manageToolbarClick()
+
+        setCustomProgress()
+
     }
 
     private fun initRecyclerView() {
         binding.rcvSensor.apply {
+            layoutManager = GridLayoutManager(requireContext(), 2)
             setHasFixedSize(true)
             adapter = sensorAdapter
         }
 
-        sensorAdapter.click = object : (Long, Long) -> Unit {
-            override fun invoke(sensorId: Long, sensorMeasurementTypeId: Long) {
-                val action = SensorFragmentDirections
-                    .actionSensorFragmentToSensorDataFragment(
-                        args.router.id,
-                        sensorId,
-                        sensorMeasurementTypeId
-                    )
-
-                findNavController().navigate(action)
+        sensorAdapter.click = object : (SensorEntity, AdapterSelectionType) -> Unit {
+            override fun invoke(sensor: SensorEntity, selection: AdapterSelectionType) {
+                if (selection == AdapterSelectionType.DETAIL) {
+                    navigateToDetailFragment(sensor)
+                }
             }
         }
+    }
+
+    private fun navigateToDetailFragment(sensor: SensorEntity) {
+        val action = SensorFragmentDirections.actionSensorFragmentToSensorDetailDialogFragment(
+            sensor,
+            args.router.id
+        )
+        navigate(action)
     }
 
     private fun manageToolbarClick() {
@@ -70,9 +79,7 @@ class SensorFragment : BaseFragment<FragmentSensorBinding, SensorViewModel>() {
     }
 
     private fun setFields() {
-        binding.tvRouterName.text = "Router Name: ${args.router.name}"
-        binding.tvRouterDesc.text = "Router Description: ${args.router.description}"
-        binding.tvRouterLocation.text = "${args.router.cityName}, ${args.router.countryName}"
+        binding.routerEntity = args.router
     }
 
     private fun observeLiveData() {
@@ -89,5 +96,9 @@ class SensorFragment : BaseFragment<FragmentSensorBinding, SensorViewModel>() {
 
     private fun observeSensors(sensors: List<SensorEntity>) {
         sensorAdapter.submitList(sensors)
+    }
+
+    private fun setCustomProgress() {
+        setProgress(requireView(), R.id.progress_bar)
     }
 }

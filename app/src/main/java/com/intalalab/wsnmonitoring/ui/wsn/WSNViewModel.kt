@@ -10,6 +10,7 @@ import com.intalalab.wsnmonitoring.data.remote.model.login.LoginResponseModel
 import com.intalalab.wsnmonitoring.domain.usecase.GetUserInfoUseCase
 import com.intalalab.wsnmonitoring.domain.usecase.GetWSNUseCase
 import com.intalalab.wsnmonitoring.domain.usecase.ResetUserInfoUseCase
+import com.intalalab.wsnmonitoring.domain.usecase.StoreIsRememberMeChecked
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,7 +20,8 @@ import javax.inject.Inject
 class WSNViewModel @Inject constructor(
     private val getWSNUseCase: GetWSNUseCase,
     private val getUserInfoUseCase: GetUserInfoUseCase,
-    private val resetUserInfoUseCase: ResetUserInfoUseCase
+    private val resetUserInfoUseCase: ResetUserInfoUseCase,
+    private val storeIsRememberMeChecked: StoreIsRememberMeChecked
 ) : BaseViewModel() {
 
     private val _wsnList = MutableLiveData<List<WSNEntity>>()
@@ -52,6 +54,7 @@ class WSNViewModel @Inject constructor(
 
     fun onLogoutClick() = viewModelScope.launch(Dispatchers.IO + genericExceptionHandler) {
         resetUserInfoUseCase.invoke()
+        storeIsRememberMeChecked.invoke(false)
     }
 
 }

@@ -24,11 +24,11 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#fefbe9"
+            android:background="@color/light_blue_outer"
             android:gravity="center"
             android:minHeight="4dp"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="12dp">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_name"
@@ -36,6 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="16dp"
+                android:fontFamily="@font/basic"
                 android:gravity="center"
                 android:text="@{model.name}"
                 android:textColor="@color/black"
@@ -66,6 +67,7 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="16dp"
                 android:ellipsize="end"
+                android:fontFamily="@font/basic"
                 android:gravity="center"
                 android:maxLength="101"
                 android:text="@{model.description}"
@@ -83,6 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
+                android:fontFamily="@font/basic"
                 android:text="@{model.createDate}"
                 android:textColor="@color/black"
                 android:textSize="11sp"

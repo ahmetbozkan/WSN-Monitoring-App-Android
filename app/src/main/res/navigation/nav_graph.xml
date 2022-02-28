@@ -11,7 +11,11 @@
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_landingFragment"
-            app:destination="@id/wsnFragment" />
+            app:destination="@id/wsnFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
@@ -20,10 +24,18 @@
         tools:layout="@layout/fragment_splash">
         <action
             android:id="@+id/action_splashFragment_to_landingFragment"
-            app:destination="@id/wsnFragment" />
+            app:destination="@id/wsnFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_splashFragment_to_welcomeFragment"
-            app:destination="@id/welcomeFragment" />
+            app:destination="@id/welcomeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/wsnFragment"
@@ -32,7 +44,11 @@
         tools:layout="@layout/fragment_wsn">
         <action
             android:id="@+id/action_landingFragment_to_coordinatorFragment"
-            app:destination="@id/coordinatorFragment" />
+            app:destination="@id/coordinatorFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/coordinatorFragment"
@@ -41,7 +57,11 @@
         tools:layout="@layout/fragment_coordinator">
         <action
             android:id="@+id/action_coordinatorFragment_to_routerFragment"
-            app:destination="@id/routerFragment" />
+            app:destination="@id/routerFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <argument
             android:name="wsnModel"
             app:argType="com.intalalab.wsnmonitoring.data.local.model.WSNEntity" />
@@ -50,10 +70,14 @@
         android:id="@+id/routerFragment"
         android:name="com.intalalab.wsnmonitoring.ui.router.RouterFragment"
         android:label="fragment_router"
-        tools:layout="@layout/fragment_router" >
+        tools:layout="@layout/fragment_router">
         <action
             android:id="@+id/action_routerFragment_to_sensorFragment"
-            app:destination="@id/sensorFragment" />
+            app:destination="@id/sensorFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <argument
             android:name="coordinator"
             app:argType="com.intalalab.wsnmonitoring.data.local.model.CoordinatorEntity" />
@@ -61,19 +85,19 @@
     <fragment
         android:id="@+id/sensorFragment"
         android:name="com.intalalab.wsnmonitoring.ui.sensor.SensorFragment"
-        android:label="SensorFragment" >
-        <action
-            android:id="@+id/action_sensorFragment_to_sensorDataFragment"
-            app:destination="@id/sensorDataFragment" />
+        android:label="SensorFragment">
         <argument
             android:name="router"
             app:argType="com.intalalab.wsnmonitoring.data.local.model.RouterEntity" />
+        <action
+            android:id="@+id/action_sensorFragment_to_sensorDetailDialogFragment"
+            app:destination="@id/sensorDetailDialogFragment" />
     </fragment>
     <fragment
         android:id="@+id/sensorDataFragment"
         android:name="com.intalalab.wsnmonitoring.ui.sensor.data.SensorDataFragment"
         android:label="fragment_sensor_data"
-        tools:layout="@layout/fragment_sensor_data" >
+        tools:layout="@layout/fragment_sensor_data">
         <argument
             android:name="routerId"
             app:argType="long" />
@@ -83,36 +107,55 @@
         <argument
             android:name="sensorMeasurementTypeId"
             app:argType="long" />
+        <argument
+            android:name="sensor"
+            app:argType="com.intalalab.wsnmonitoring.data.local.model.SensorEntity" />
     </fragment>
     <fragment
         android:id="@+id/registerStepFirstFragment"
         android:name="com.intalalab.wsnmonitoring.ui.register.RegisterStepFirstFragment"
         android:label="fragment_register"
-        tools:layout="@layout/fragment_register_step_first" >
+        tools:layout="@layout/fragment_register_step_first">
         <action
             android:id="@+id/action_registerStepFirstFragment_to_registerStepSecondFragment"
-            app:destination="@id/registerStepSecondFragment" />
+            app:destination="@id/registerStepSecondFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="com.intalalab.wsnmonitoring.ui.welcome.WelcomeFragment"
         android:label="fragment_welcome"
-        tools:layout="@layout/fragment_welcome" >
+        tools:layout="@layout/fragment_welcome">
         <action
             android:id="@+id/action_welcomeFragment_to_loginFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
             app:destination="@id/loginFragment" />
         <action
             android:id="@+id/action_welcomeFragment_to_registerStepFirstFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
             app:destination="@id/registerStepFirstFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerStepSecondFragment"
         android:name="com.intalalab.wsnmonitoring.ui.register.RegisterStepSecondFragment"
         android:label="fragment_register_step_second"
-        tools:layout="@layout/fragment_register_step_second" >
+        tools:layout="@layout/fragment_register_step_second">
         <action
             android:id="@+id/action_registerStepSecondFragment_to_registerStepThirdFragment"
-            app:destination="@id/registerStepThirdFragment" />
+            app:destination="@id/registerStepThirdFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <argument
             android:name="registerRequestBody"
             app:argType="com.intalalab.wsnmonitoring.data.remote.model.login.RegisterRequestBody" />
@@ -121,7 +164,7 @@
         android:id="@+id/registerStepThirdFragment"
         android:name="com.intalalab.wsnmonitoring.ui.register.RegisterStepThirdFragment"
         android:label="fragment_register_step_third"
-        tools:layout="@layout/fragment_register_step_third" >
+        tools:layout="@layout/fragment_register_step_third">
         <action
             android:id="@+id/action_registerStepThirdFragment_to_loginFragment"
             app:destination="@id/loginFragment"
@@ -130,15 +173,45 @@
         <argument
             android:name="registerRequestBody"
             app:argType="com.intalalab.wsnmonitoring.data.remote.model.login.RegisterRequestBody" />
-    </fragment><action android:id="@+id/action_global_welcomeFragment" app:destination="@id/welcomeFragment"/>
+    </fragment>
+    <action
+        android:id="@+id/action_global_welcomeFragment"
+        app:destination="@id/welcomeFragment" />
     <dialog
         android:id="@+id/itemDetailDialogFragment"
         android:name="com.intalalab.wsnmonitoring.ui.detail.ItemDetailDialogFragment"
         android:label="dialog_fragment_item_detail"
-        tools:layout="@layout/dialog_fragment_item_detail" >
+        tools:layout="@layout/dialog_fragment_item_detail">
         <argument
             android:name="model"
             app:argType="com.intalalab.wsnmonitoring.data.local.model.ItemDetailModel" />
     </dialog>
-    <action android:id="@+id/action_global_itemDetailDialogFragment" app:destination="@id/itemDetailDialogFragment" />
+    <action
+        android:id="@+id/action_global_itemDetailDialogFragment"
+        app:destination="@id/itemDetailDialogFragment" />
+    <dialog
+        android:id="@+id/sensorDetailDialogFragment"
+        android:name="com.intalalab.wsnmonitoring.ui.sensor.detail.SensorDetailDialogFragment"
+        android:label="SensorDetailDialogFragment">
+        <argument
+            android:name="sensor"
+            app:argType="com.intalalab.wsnmonitoring.data.local.model.SensorEntity" />
+        <action
+            android:id="@+id/action_sensorDetailDialogFragment_to_sensorDataFragment"
+            app:destination="@id/sensorDataFragment" />
+        <argument
+            android:name="routerId"
+            app:argType="long" />
+    </dialog>
+    <dialog
+        android:id="@+id/multiSelectionDialogFragment"
+        android:name="com.intalalab.wsnmonitoring.ui.multiselection.MultiSelectionDialogFragment"
+        android:label="MultiSelectionDialogFragment">
+        <argument
+            android:name="model"
+            app:argType="com.intalalab.wsnmonitoring.ui.multiselection.MultiSelectionDialogModel" />
+    </dialog>
+    <action
+        android:id="@+id/action_global_multiSelectionDialogFragment"
+        app:destination="@id/multiSelectionDialogFragment" />
 </navigation>
